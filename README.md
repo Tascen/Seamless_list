@@ -1,6 +1,6 @@
 # Seamless_list
 
-* This is a small project created on React with Transition group and router.*
+This is a small project created on React with Transition group and router.
 
 
 ### All you need to start assembling it is install all dependencies
