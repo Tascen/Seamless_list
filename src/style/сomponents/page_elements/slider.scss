@@ -1,0 +1,71 @@
+@import "../../variables";
+
+.slider {
+  --item_size: 340px;
+  --item_width: var(--item_size);//340px
+  --item_height: var(--item_size);//316px
+  --items_gap: 13.5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+
+  .btn-arrow {
+    z-index: 1;
+    &:nth-of-type(1) {margin: 0 7px 0 0;}
+    &:nth-of-type(2) {margin: 0 0 0 7px;}
+    transition: opacity .25s ease, transform .2s ease-in;
+    &.loced {
+      opacity: 0;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+    &:hover:not(.loced) {
+      opacity: 0.5;
+    }
+  }
+
+  .slider_items {
+    --active_item_index: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: var(--item_width);
+    height: var(--item_height);
+
+
+    .item {
+      width: calc(var(--item_width) * 0.9);
+      min-width: calc(var(--item_width) * 0.9);
+      height: calc(var(--item_height) * 0.9);
+
+      user-select: none;
+      border-radius: $border_radius_3;
+      overflow: hidden;
+      background: var(--color_panel_background_3);
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(3px 4px 3px #00000050);
+      }
+
+      margin: 0 var(--items_gap);
+      transform: translateX(calc( (-0.9 * var(--item_width) - var(--items_gap) * 2) * var(--active_item_index) ));
+      &:nth-child(1) {margin-left: 0}
+      &:nth-last-child(1) {margin-right: 0}
+      &.active {
+        width: var(--item_width);
+        min-width: var(--item_width);
+        height: var(--item_height);
+        box-shadow: 0 0 20px 2px #00000033;
+        transform: translateX(calc( (-1 * var(--item_width) + var(--item_width) * 0.1 - var(--items_gap) * 2) * var(--active_item_index) ));
+      }
+
+      transition: all .5s cubic-bezier(0.4, -0.31, 0.25, 1);
+    }
+  }
+}

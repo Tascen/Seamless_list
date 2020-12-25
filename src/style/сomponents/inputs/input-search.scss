@@ -1,0 +1,50 @@
+@import "../../topography/topography";
+@import "../../variables";
+
+.input_search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.56em;
+  border-radius: $border_radius_1;
+  background: transparent;
+  border: solid 2px var(--color_panel_background_3);
+  @include body_extra_Large_medium;
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    margin: 0 10px;
+    @include body_extra_Large_medium;
+    color: var(--color_topography_3);
+    &::placeholder {
+      color: var(--color_topography_3);
+    }
+  }
+  *[class|="icon"], .icon {
+    --color_1: var(--color_topography_3);
+    width: 1em;
+    height: 1em;
+  }
+  .delete {
+    transition: opacity .25s ease, transform .2s ease-in;
+    &:active {
+      transform: scale(0.9);
+    }
+    &:hover:not(.loced) {
+      opacity: 0.5;
+    }
+  }
+  &.empty .delete {opacity: 0;}
+}
+
+
+
+//topography
+input.input_search, input[type="search"] {
+  @include body_extra_Large_medium;
+  &::placeholder {
+    color: var(--color_topography_3);
+  }
+}

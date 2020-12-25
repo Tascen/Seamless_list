@@ -1,0 +1,43 @@
+@import "./page_library";
+@import "./page_library_item";
+
+main[id^="page"] {
+  //background: var(--color_background);
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color_topography_1);
+  }
+
+}
+
+
+main[id^="page"][class*="page_anim-fade"] {
+  &[class*="-enter"] {
+
+  }
+  &[class*="-enter-active"], &[class*="-enter-done"] {
+
+  }
+
+
+  &[class*="-exit"] {
+    &::-webkit-scrollbar-track {
+      visibility: hidden;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      visibility: hidden;
+    }
+
+  }
+  &[class*="-exit-active"] {
+  }
+
+}

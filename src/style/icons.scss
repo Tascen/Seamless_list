@@ -1,0 +1,18 @@
+*[class|="icon"], .icon {
+  --color_1: var(--color_topography_3);
+  * {
+    transition: all .2s ease;
+  }
+}
+
+.icon-order {
+  filter: invert(.3);
+}
+
+.icon-triangle_left, .icon-triangle_right {
+  width: 11px;
+  min-width: 11px;
+  height: 18px;
+  --color_1: var(--color_topography_1);
+  stroke-linecap: round;
+}

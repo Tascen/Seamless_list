@@ -1,0 +1,184 @@
+
+$background_type: 1;
+
+
+#page_library_item {
+  .page_background {
+    width: 100%;
+    position: absolute;
+    height: calc(var(--viewbox_width) * 0.615);
+    background: var(--color_panel_background);
+    clip-path: ellipse(74% 100% at 50% 0%);//ellipse(74% 74% at 50% 0%)
+  }
+  header {
+    background: var(--color_panel_background);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slider {
+    margin: 10px auto;
+    --item_width: 300px;
+    --item_height: 300px;
+  }
+
+  .list-grid {
+    width: 340px;
+    margin: 40px auto;
+    .list-grid_item {
+      width: calc(50% - 10px);
+      margin: 5px;
+    }
+  }
+  .statistic {
+
+    figure {
+      background: var(--color_panel_background_2);
+      padding: 10px 30px;
+      &:nth-of-type(1) {
+        padding: 30px 30px 10px 30px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+      }
+      &:nth-last-of-type(1) {
+        padding: 10px 30px 30px  30px;
+      }
+    }
+  }
+
+
+  @if $background_type == 2 {
+    background: var(--color_background);
+    header {
+      background: transparent;
+    }
+    .page_background {
+      width: 100%;
+      position: unset;
+      height: calc(var(--viewbox_width) * 0.615);
+      margin: 0 0 calc(-0.615 * var(--viewbox_width)) 0;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: var(--viewbox_width);
+        height: var(--viewbox_height);
+        background: var(--color_background) var(--image_background); //url(http://www.supah.it/dribbble/008/008.jpg);
+        background-position: 50% 40%;
+        background-repeat: no-repeat;
+        background-size: var(--viewbox_width) var(--viewbox_height);
+        background-attachment: fixed;
+      }
+    }
+  }
+}
+
+
+
+
+$page_transition_between_delay: .7s;
+$page_transition__duration: 1s;
+//Animation
+//----page transition
+*[class*="page_anim-fade"] {
+
+  &[class*="-enter"] > #page_library_item {
+    visibility: hidden;
+    > *:not(.page_background):not(header) {
+      opacity: 1;
+      transform: translateY(  calc(var(--viewbox_height) * 0.2)  );
+    }
+    > .page_background {
+      opacity: 0;
+    }
+    > header {
+      opacity: 0;
+    }
+  }
+  &[class*="-enter-active"] > #page_library_item, &[class*="-enter-done"] > #page_library_item {
+    transition: visibility 0s;
+    visibility: visible;
+    > *:not(.page_background):not(header) {
+      transition: all $page_transition__duration / 2 $page_transition_between_delay ease;
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    > .page_background {
+      transition: all $page_transition__duration / 2 $page_transition_between_delay ease;
+      opacity: 1;
+    }
+    > header {
+      transition: all $page_transition__duration / 2 $page_transition_between_delay ease;
+      opacity: 1;
+    }
+  }
+
+
+  &[class*="-exit"] > #page_library_item {
+    visibility: visible;
+    > *:not(.page_background):not(header):not(.slider) {
+
+      opacity: 1;
+      transform: translateY(0%);
+    }
+    @if $background_type == 2 {
+      > .page_background {}
+      > header {
+        opacity: 1;
+      }
+    } @else {
+      > .page_background {}
+      > header {
+        transform: translateY(0%);
+        > * {
+          opacity: 1;
+        }
+      }
+    }
+    > .slider {
+      opacity: 1;
+      transform: translateX(  0%  );
+    }
+  }
+  &[class*="-exit-active"] > #page_library_item {
+    transition: visibility 0s $page_transition__duration;
+    visibility: hidden;
+    > *:not(.page_background):not(header):not(.slider) {
+      transition: all $page_transition__duration / 2 ease;
+      opacity: 0;
+      transform: translateY(  calc(var(--viewbox_height) * 0.2)  );
+    }
+    @if $background_type == 2 {
+      > .page_background {
+        transition: all $page_transition__duration / 2 ease;
+        opacity: 0;
+      }
+      > header {
+        transition: all $page_transition__duration / 2 ease;
+        opacity: 0;
+      }
+
+    } @else {
+      > .page_background {
+        transition: all $page_transition__duration / 2 ease;
+        clip-path: ellipse(74% 0% at 50% 0%);
+      }
+      > header {
+        transition: all $page_transition__duration / 2 $page_transition__duration / 2 ease;
+        transform: translateY(-100%);
+        > * {
+          transition: all $page_transition__duration / 2 $page_transition__duration * 0.4 ease;
+          opacity: 0;
+        }
+      }
+    }
+    > .slider {
+      transition: all $page_transition__duration / 2 ease;
+      opacity: 0;
+      transform: translateX(  calc(0.8 * var(--viewbox_width))  );
+    }
+  }
+
+}

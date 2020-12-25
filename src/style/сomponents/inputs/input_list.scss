@@ -1,0 +1,100 @@
+@import "../../topography/topography";
+@import "../../variables";
+
+
+.input_list {
+  display: inline-grid;
+  position: relative;
+  background: var(--color_panel_background_3);
+  border-radius: #{$border_radius_1};
+  &::before {
+    content: attr(data-title);
+    display: inline-block;
+    position: absolute;
+    top: calc(-1 * (1.25em + 4px) / 2);
+    padding: 4px 10.08px;
+    border-radius: #{$border_radius_1};
+    background: var(--color_panel_background_3);
+
+
+    text-transform: uppercase;
+    @include body_normal_medium;
+    line-height: 100%;
+    color: var( --color_topography_3);
+
+    white-space: nowrap;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .input_list_items {
+    > * {padding: 12px; cursor: pointer}
+    p {margin: 0;}
+
+    list-style: none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 300px;
+    transition: max-height 0.4s ease-in-out;
+    position: absolute;
+    z-index: 50;
+    top: 100%;
+    width: 100%;
+    margin: 10.08px 0 0 0;
+    background: var(--color_panel_background_3);
+    border-radius: $border_radius_1;
+    > li {
+      @include body_extra_Large_medium;
+    }
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      border-radius: 0 $border_radius_1 $border_radius_1 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color_topography_1);
+      border-radius: 0 $border_radius_1 $border_radius_1 0;
+    }
+
+
+    &.closed {
+      overflow: hidden;
+      max-height: 0px;
+
+    }
+    &:not(.closed) ~ .input_list_head .btn-arrow {
+      transform: rotate(90deg);
+    }
+
+  }
+  .input_list_head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border 0.4s ease-in-out;
+    grid-row: 1/2;
+    padding: 10.08px;
+    .btn-arrow {
+      transition: transform 0.4s ease-in-out;
+      padding: 0;
+      width: 9px;
+      height: 15px;
+      cursor: pointer;
+      *[class|="icon"], .icon {
+        width: 9px;
+        height: 15px;
+        --color_1: var(--color_topography_3);
+      }
+    }
+    .input_list_selected_item {
+      width: 100%;
+      @include body_extra_Large_medium;
+      color: var(--color_topography_3);
+    }
+  }
+}
