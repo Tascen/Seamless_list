@@ -1,8 +1,10 @@
 /bin/*
 /node_modules/*
 /obj/*
+/.vs/*
 
 *.sln
 *.njsproj.*
+*.njsproj
 package-lock.json
 /server.js
