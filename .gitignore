@@ -1,8 +1,8 @@
-bin/**.*
+/bin/*
 /node_modules/*
-obj/**.*
+/obj/*
 
 *.sln
 *.njsproj.*
 package-lock.json
-server.js
+/server.js
